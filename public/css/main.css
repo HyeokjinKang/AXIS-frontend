@@ -2,9 +2,15 @@ body {
   font-family: "SEBANG Gothic";
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .containers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition-duration: 1s;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -14,6 +20,84 @@ body {
   height: 100vh;
 }
 
+#loadingContainer {
+  z-index: 100;
+}
+
 #loadingLogo {
-  width: 30vw;
+  width: 20vw;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.headers {
+  background-color: #3674df;
+  width: 100vw;
+  height: 4vh;
+  font-size: 2vh;
+}
+
+.contents {
+  width: 100vw;
+  height: 61vh;
+}
+
+.interactions {
+  background-color: #3674df;
+  width: 100vw;
+  height: 35vh;
+}
+
+.elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#orderText1 {
+  font-size: 4vh;
+}
+
+#orderText2 {
+  font-size: 6vh;
+}
+
+#clicking {
+  margin-top: 3vh;
+  height: 15vh;
+}
+
+.additButtonContainer {
+  position: fixed;
+  bottom: 35vh;
+  left: 0;
+  width: 100vw;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.additButton {
+  text-decoration: none;
+  color: #3674df;
+  border-radius: 5vh;
+  text-align: center;
+  width: 20vw;
+  height: 4vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #3674df;
+}
+
+.additButton.selectedButton {
+  color: #fff;
+  background-color: #3674df;
 }
