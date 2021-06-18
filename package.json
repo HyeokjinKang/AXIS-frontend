@@ -1,0 +1,23 @@
+{
+  "name": "axis-frontend",
+  "version": "1.0.0",
+  "description": "삼성SDS-JA Korea 스마트해커톤 출전을 위한 프로젝트의 프론트엔드",
+  "main": "index.js",
+  "scripts": {
+    "front": "supervisor index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HyeokjinKang/AXIS-frontend.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/HyeokjinKang/AXIS-frontend/issues"
+  },
+  "homepage": "https://github.com/HyeokjinKang/AXIS-frontend#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "supervisor": "^0.12.0"
+  }
+}
