@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXIS</title>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <div id="container">
+    <div id="loginContainer">
+      <img src="/images/logo.svg" id="logo">
+      <input type="text" id="id" placeholder="ID" pattern="[a-z0-9_-]" required>
+      <input type="password" id="pw" placeholder="PW" pattern="[a-zA-Z0-9!_-]" required>
+      <input type="submit" value="Login" id="btn" onclick="submit()">
+    </div>
+  </div>
+  <script>
+    const api = "<%= api %>";
+    const front = "<%= front %>";
+  </script>
+  <script src="/js/index.js"></script>
+</body>
+</html>

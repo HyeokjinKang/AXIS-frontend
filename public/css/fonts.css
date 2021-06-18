@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "SEBANG Gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: "SEBANG Gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
