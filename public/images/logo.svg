@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="163.724" height="190.175" viewBox="0 0 163.724 190.175">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.048" y1="-0.081" x2="0.32" y2="1.411" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#75edff"/>
+      <stop offset="1" stop-color="#85a2ff"/>
+    </linearGradient>
+  </defs>
+  <g id="로고구만" transform="translate(-435.591 -403)">
+    <path id="패스_58" data-name="패스 58" d="M153.119,40.089c7.712-12.159,15.2-32.633,36.57-32.183s21.372,29.469,38.693,29.243,24.526-13.241,24.526-13.241l33.539,69.132L126.86,92.9S145.407,52.248,153.119,40.089Z" transform="translate(310.966 499.391)" fill="url(#linear-gradient)"/>
+    <path id="패스_57" data-name="패스 57" d="M109.358-27H259.974L221.129,60.7l47.187,102.475H104.591L151.063,60.938Zm64.584,10.962H126.755l35.986,75.546-40.752,92.466h67.682l-23.832-48.616,4.528-15.252,31.458,63.868H250.68L209.213,60.938l33.841-76.976H185.381l16.444,34.794-5.72,10.724Z" transform="translate(331 430)" fill="#3674df"/>
+  </g>
+</svg>
