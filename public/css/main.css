@@ -1,0 +1,19 @@
+body {
+  font-family: "SEBANG Gothic";
+  margin: 0;
+  padding: 0;
+}
+
+.containers {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#loadingLogo {
+  width: 30vw;
+}
