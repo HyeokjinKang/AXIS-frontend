@@ -34,9 +34,68 @@
       <img src="/images/clicking.svg" id="clicking">
     </div>
   </div>
+  <div id="tempContainer" class="containers">
+    <div class="elements headers sebang">
+      <span>
+        <%= __('welcome_to_1') %><span class="storeName">AXIS</span><%= __('welcome_to_2') %>
+      </span>
+    </div>
+    <div class="elements contents">
+      <div id="webcamOverlay">
+        <span id="temperature" class="sebang"></span>
+        <span id="alertText"></span>
+        <span id="alertSubText"></span>
+      </div>
+      <video id="webcam" playsinline autoplay></video>
+    </div>
+    <div class="elements interactions">
+      <div id="interactionsInformation">
+        <%= __('camera_information') %>
+      </div>
+      <div id="progress">
+        <div class="progressContainer">
+          <img src="/images/arrow.png" class="arrow progressNow">
+          <img src="/images/arrow.png" class="arrow">
+          <img src="/images/arrow.png" class="arrow">
+          <img src="/images/arrow.png" class="arrow">
+        </div>
+        <div class="progressContainer">
+          <span class="progressText progressNow"><%= __('in_progress') %></span>
+          <span class="progressText"><%= __('waiting') %></span>
+          <span class="progressText"><%= __('waiting') %></span>
+          <span class="progressText"><%= __('waiting') %></span>
+        </div>
+        <div id="progressIcons">
+          <img src="/images/temp.png" class="progressIcon">
+          <img src="/images/right-arrow.png" class="rightArrow">
+          <img src="/images/code.png" class="progressIcon">
+          <img src="/images/right-arrow.png" class="rightArrow">
+          <img src="/images/food.png" class="progressIcon">
+          <img src="/images/right-arrow.png" class="rightArrow">
+          <img src="/images/check.png" class="progressIcon">
+        </div>
+        <div class="progressContainer">
+          <span class="progressExplainText progressNow"><%= __('fever_check') %></span>
+          <span class="progressExplainText"><%= __('qr_check') %></span>
+          <span class="progressExplainText"><%= __('menu_selection') %></span>
+          <span class="progressExplainText"><%= __('complete') %></span>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
+    const lang = "<%= __('lang') %>";
     const api = "<%= api %>";
     const front = "<%= front %>";
+    const orderHere = "<%= __('order_here') %>";
+    const tempCheck = "<%= __('temp_check') %>";
+    const feverWarning = "<%= __('fever_warn') %>";
+    const feverWarningSub = "<%= __('fever_warn_sub') %>";
+    const feverNormal = "<%= __('fever_normal') %>";
+    const noMaskWarn = "<%= __('no_mask_warn') %>";
+    const noMaskWarnSub = "<%= __('no_mask_warn_sub') %>";
+    const complete = "<%= __('complete') %>";
+    const inProgress = "<%= __('in_progress') %>";
   </script>
   <script src="/js/main.js"></script>
 </body>

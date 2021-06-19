@@ -80,6 +80,7 @@ body {
 }
 
 .additButtonContainer {
+  opacity: 1;
   position: fixed;
   bottom: 35vh;
   left: 0;
@@ -89,9 +90,12 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  transition-duration: 1s;
+}
 }
 
 .additButton {
+  cursor: pointer;
   text-decoration: none;
   color: #3674df;
   border-radius: 5vh;
@@ -103,9 +107,145 @@ body {
   justify-content: center;
   align-items: center;
   border: 3px solid #3674df;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 .additButton.selectedButton {
   color: #fff;
   background-color: #3674df;
+}
+
+#waitContainer {
+  z-index: 50;
+}
+
+#tempContainer {
+  z-index: 49;
+}
+
+#interactionsInformation {
+  font-weight: 800;
+  font-size: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+}
+
+#progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 100vw;
+  height: 23vh;
+  margin-bottom: 2vh;
+}
+
+.progressContainer {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1vh;
+  font-weight: 700;
+}
+
+.progressText {
+  text-align: center;
+  width: 20vw;
+  color: #bebebe;
+}
+
+.progressText.progressNow {
+  color: #3674df;
+}
+
+#progressIcons {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.progressIcon {
+  width: 10vw;
+}
+
+.rightArrow {
+  width: 5vw;
+  margin: 2.5vw;
+}
+
+.progressExplainText {
+  text-align: center;
+  width: 20vw;
+  color: #bebebe;
+}
+
+.progressExplainText.progressNow {
+  color: #222;
+}
+
+.arrow {
+  opacity: 0;
+}
+
+.arrow.progressNow {
+  opacity: 1;
+}
+
+#webcamOverlay {
+  display: flex;
+  font-weight: 900;
+  opacity: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  transition-duration: 0.5s;
+}
+
+#webcamOverlay.fever {
+  color: #e13333;
+}
+
+#webcamOverlay.normal {
+  color: #3674df;
+}
+
+#temperature {
+  color: #fff;
+  padding: 0.5vh 15vw;
+  font-size: 3vh;
+  border-radius: 50vh;
+}
+
+#temperature.fever {
+  background-color: #e13333;
+}
+
+#temperature.normal {
+  background-color: #3674df;
+}
+
+#alertText {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+  font-size: 3vh;
+}
+
+#alertSubText {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+  font-size: 2vh;
+}
+
+#webcamOverlay.display {
+  opacity: 1;
 }
