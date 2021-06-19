@@ -14,6 +14,30 @@
     <img src="/images/logo.svg" id="loadingLogo">
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </div>
+  <div id="nfcContainer" class="infoContainer containers" onclick="mobileCheckCancel()">
+    <div class="elements headers sebang"><%= __('mobile_check') %></div>
+    <div class="elements contents infoContents">
+      <span class="number">1</span>
+      <span><%= __('mobile_check_1') %></span>
+      <img src="/images/nfc_1.png" class="infoImage" id="image1adjustment">
+      <span class="number">2</span>
+      <span><%= __('mobile_check_2') %></span>
+      <img src="/images/nfc_2.png" class="infoImage">
+    </div>
+    <div class="elements interactions sebang infoInteractions"><%= __('mobile_check_cancel') %></div>
+  </div>
+  <div id="howtoContainer" class="infoContainer containers" onclick="howtoCancel()">
+    <div class="elements headers sebang"><%= __('how_to') %></div>
+    <div class="elements contents infoContents">
+      <span class="number">1</span>
+      <span><%= __('how_to_1') %></span>
+      <img src="/images/howto_1.png" class="infoImage">
+      <span class="number">2</span>
+      <span><%= __('how_to_2') %></span>
+      <img src="/images/howto_2.png" class="infoImage">
+    </div>
+    <div class="elements interactions sebang infoInteractions"><%= __('how_to_cancel') %></div>
+  </div>
   <div id="waitContainer" class="containers" onclick="start()">
     <div class="elements headers sebang">
       <span>
@@ -47,6 +71,10 @@
         <span id="alertSubText"></span>
       </div>
       <video id="webcam" playsinline autoplay></video>
+      <div class="additButtonContainer rightAlign displayNone">
+        <span class="additButton selectedButton" onclick="mobileCheck()"><%= __('mobile_check') %></span>
+        <span class="additButton selectedButton" onclick="howtoCheck()"><%= __('how_to') %></span>
+      </div>
     </div>
     <div class="elements interactions">
       <div id="interactionsInformation">
@@ -96,6 +124,14 @@
     const noMaskWarnSub = "<%= __('no_mask_warn_sub') %>";
     const complete = "<%= __('complete') %>";
     const inProgress = "<%= __('in_progress') %>";
+    const codeCheck = "<%= __('code_check') %>";
+    const qrcodeExplain =  "<%= __('qr_explain') %>";
+    const mobile1 =  "<%= __('mobile_check_1') %>";
+    const mobile2 =  "<%= __('mobile_check_2') %>";
+    const mobile3 =  "<%= __('mobile_check_3') %>";
+    const howto1 =  "<%= __('how_to_1') %>";
+    const howto2 =  "<%= __('how_to_2') %>";
+    const howto3 =  "<%= __('how_to_3') %>";
   </script>
   <script src="/js/main.js"></script>
 </body>

@@ -129,6 +129,52 @@ const noMask = () => {
   webcamOverlay.classList.add("display");
 };
 
+const qrcode = () => {
+  speech(codeCheck);
+  if (blindMode) {
+    setTimeout(() => {
+      speech(`${mobile3} 1. ${mobile1} 2. ${mobile2}`);
+    }, 5000);
+  }
+  interactionsInformation.innerText = qrcodeExplain;
+  document
+    .getElementsByClassName("additButtonContainer")[1]
+    .classList.remove("displayNone");
+  webcamOverlay.classList.remove("display");
+  document.getElementsByClassName("arrow")[0].classList.remove("progressNow");
+  document.getElementsByClassName("arrow")[1].classList.add("progressNow");
+  document.getElementsByClassName("rightArrow")[0].src =
+    "/images/right-arrow_active.png";
+  document.getElementsByClassName("progressIcon")[1].src =
+    "/images/code_active.png";
+  document.getElementsByClassName("progressText")[0].innerText = complete;
+  document.getElementsByClassName("progressText")[1].innerText = inProgress;
+  document
+    .getElementsByClassName("progressText")[1]
+    .classList.add("progressNow");
+  document
+    .getElementsByClassName("progressExplainText")[1]
+    .classList.add("progressNow");
+};
+
+const mobileCheck = () => {
+  speech(`${mobile3} 1. ${mobile1} 2. ${mobile2}`);
+  nfcContainer.classList.add("display");
+};
+
+const mobileCheckCancel = () => {
+  nfcContainer.classList.remove("display");
+};
+
+const howtoCheck = () => {
+  speech(`${howto3} 1. ${howto1} 2. ${howto2}`);
+  howtoContainer.classList.add("display");
+};
+
+const howtoCancel = () => {
+  howtoContainer.classList.remove("display");
+};
+
 const constraints = {
   audio: false,
   video: true,
