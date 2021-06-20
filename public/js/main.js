@@ -1,6 +1,15 @@
 const video = document.getElementById("webcam");
 
 let menu = [];
+let menuJson = {};
+let category = [];
+let categorySelection = 0;
+let selection = 0;
+let cart = [];
+let amount = 0;
+let place = "";
+let method = "";
+let storeName = "";
 let msg = new SpeechSynthesisUtterance();
 let voices;
 let interval;
@@ -22,6 +31,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           .then((res) => res.json())
           .then((data) => {
             if (data.result == "success") {
+              storeName = data.data[0].name;
               let storeClass = document.getElementsByClassName("storeName");
               for (e of storeClass) {
                 e.innerText = data.data[0].name;
@@ -210,6 +220,138 @@ const showMenu = () => {
   setTimeout(() => {
     tempContainer.style.display = "none";
   }, 1000);
+};
+
+const menuScroll = (e) => {
+  selection = Math.round(e.scrollLeft / (window.innerWidth / 5));
+  let menu = menuJson[category[categorySelection]][selection];
+  menuFocusImage.src = `${menu.image}${menu.menu}.png`;
+  menuImage.src = `${menu.image}${menu.menu}.png`;
+  if (lang == "ko") {
+    menuNameSub.innerText = menu.menuEn;
+    menuName.innerText = menu.menu;
+  } else {
+    menuNameSub.innerText = menu.menu;
+    menuName.innerText = menu.menuEn;
+  }
+  menuPrice.innerText = menu.amount.toLocaleString("ko-KR");
+  let t = e.scrollLeft;
+  setTimeout(() => {
+    compare(t);
+  }, 300);
+};
+
+const compare = (t) => {
+  if (menuSelection.scrollLeft == t) {
+    const raf = (start, end, t) => {
+      menuSelection.scrollLeft = start + ((end - start) / 10) * t;
+      if (t == 10) return;
+      requestAnimationFrame(() => {
+        raf(start, end, t + 1);
+      });
+    };
+    raf(menuSelection.scrollLeft, (window.innerWidth / 5) * selection, 1);
+  }
+};
+
+const categorySelected = (n) => {
+  categorySelection = n;
+  menuSelection.scrollLeft = 0;
+  menuScroll({ scrollLeft: 0 });
+  selection = 0;
+  menuList.innerHTML = "";
+  document.getElementsByClassName("selected")[0].classList.remove("selected");
+  document.getElementsByClassName("category")[n].classList.add("selected");
+  let i = 0;
+  for (e of menuJson[category[n]]) {
+    menuList.innerHTML = `${menuList.innerHTML}
+                          <div class="menu" onclick="menuSelected(${i})">
+                            <img src="${e.image}${e.menu}.png"
+                              class="menuListImage">
+                            <span class="menuListName">${
+                              lang == "ko" ? e.menu : e.menuEn
+                            }</span>
+                            <span class="menuListPrice">
+                              ${e.amount.toLocaleString("ko-KR")}
+                            </span>
+                          </div>`;
+    i++;
+  }
+};
+
+const menuSelected = (n) => {
+  const raf = (start, end, t) => {
+    menuSelection.scrollLeft = start + ((end - start) / 10) * t;
+    if (t == 10) return;
+    requestAnimationFrame(() => {
+      raf(start, end, t + 1);
+    });
+  };
+  raf(menuSelection.scrollLeft, (window.innerWidth / 5) * n, 1);
+};
+
+const addToCart = () => {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i] == menuJson[category[categorySelection]][selection]) {
+      cart[i].count++;
+      updateCart();
+      return;
+    }
+  }
+  cart.push(menuJson[category[categorySelection]][selection]);
+  cart[cart.length - 1].count = 1;
+  updateCart();
+};
+
+const updateCart = () => {
+  menuCartList.innerHTML = "";
+  let count = 0;
+  amount = 0;
+  for (let i = 0; i < cart.length; i++) {
+    let menu = cart[i];
+    count += menu.count;
+    amount += menu.amount * menu.count;
+    menuCartList.innerHTML = `${menuCartList.innerHTML}
+    <div class="menuCartElement">
+      <div class="menuCartImageContainer">
+        <img src="${menu.image}${menu.menu}.png" class="menuCartImage">
+      </div>
+      <div class="menuCartInformation">
+        <span class="menuCartTextMenu">${
+          lang == "ko" ? menu.menu : menu.menuEn
+        }</span>
+        <span class="menuCartTextAmount">${(
+          menu.amount * menu.count
+        ).toLocaleString("ko-KR")}</span>
+      </div>
+      <div class="menuCartAmount">
+        <img src="/images/arrow_up.svg" class="menuCartAmountArrow" onclick="countUp(${i})">
+        <span class="menuCartAmountText">${menu.count}개</span>
+        <img src="/images/arrow_down.svg" class="menuCartAmountArrow" onclick="countDown(${i})">
+      </div>
+      <div class="menuCartRemove" onclick="deleteCart(${i})">
+        <img src="/images/delete.svg" id="delete">
+      </div>
+    </div>`;
+  }
+  cartCount.innerText = count;
+  totalValue.innerText = amount.toLocaleString("ko-KR");
+};
+
+const countUp = (n) => {
+  cart[n].count++;
+  updateCart();
+};
+
+const countDown = (n) => {
+  if (cart[n].count == 1) return;
+  cart[n].count--;
+  updateCart();
+};
+
+const deleteCart = (n) => {
+  cart.splice(n, 1);
+  updateCart();
 };
 const constraints = {
   audio: false,
