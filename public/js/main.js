@@ -353,6 +353,30 @@ const deleteCart = (n) => {
   cart.splice(n, 1);
   updateCart();
 };
+
+const cancelOrder = () => {
+  Swal.fire({
+    title: rusure,
+    icon: "warning",
+    showDenyButton: true,
+    confirmButtonText: `O`,
+    denyButtonText: `X`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    }
+  });
+};
+
+const placeOrder = () => {
+  if (amount) {
+    document.getElementById("menuContainer").classList.add("fadeOut");
+    setTimeout(() => {
+      document.getElementById("menuContainer").style.display = "none";
+    }, 1000);
+  }
+};
+
 const constraints = {
   audio: false,
   video: true,
