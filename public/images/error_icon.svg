@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="223" height="223" viewBox="0 0 223 223">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.063" x2="1.192" y2="1.1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#c56fff"/>
+      <stop offset="1" stop-color="#7235ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-0.818" y1="-0.185" x2="1.149" y2="0.876" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b866ff"/>
+      <stop offset="0.28" stop-color="#b866ff"/>
+      <stop offset="1" stop-color="#7e31ff"/>
+    </linearGradient>
+  </defs>
+  <g id="error_icon" transform="translate(-289 -529)">
+    <g id="그룹_133" data-name="그룹 133" transform="translate(-10081.567 1055.432)">
+      <circle id="타원_15" data-name="타원 15" cx="111.5" cy="111.5" r="111.5" transform="translate(10370.567 -526.432)" fill="url(#linear-gradient)"/>
+      <circle id="타원_24" data-name="타원 24" cx="88.5" cy="88.5" r="88.5" transform="translate(10393.567 -503.432)" fill="#fff"/>
+    </g>
+    <path id="패스_158" data-name="패스 158" d="M-1.283-109.626c-12.533,0-22.348,3.926-29.747,9.664-3.926,3.02-3.926,8.154-1.057,11.778,2.869,3.775,7.1,4.832,11.023,2.114,5.436-3.775,11.174-6.493,19.177-6.493,11.929,0,16.308,5.587,16.308,11.929v.755c0,6.04-1.661,9.362-14.194,20.234-10.872,9.513-12.533,15.1-12.533,25.67,0,5.436,4.228,7.852,9.211,7.852,4.681,0,8.758-2.869,8.758-7.4,0-6.342,1.208-9.513,9.966-17.365,14.194-12.835,18.12-19.328,18.12-29.143v-1.661C33.749-98.15,20.612-109.626-1.283-109.626Zm-1.963,93.62A11.283,11.283,0,0,0-14.722-4.53,11.283,11.283,0,0,0-3.246,6.946,11.283,11.283,0,0,0,8.23-4.53,11.283,11.283,0,0,0-3.246-16.006Z" transform="translate(401 689)" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>
