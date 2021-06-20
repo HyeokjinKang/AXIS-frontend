@@ -41,7 +41,7 @@
   <div id="waitContainer" class="containers" onclick="start()">
     <div class="elements headers sebang">
       <span>
-        <%= __('welcome_to_1') %><span class="storeName">액시스</span><%= __('welcome_to_2') %>
+        <%= __('welcome_to_1') %><span class="storeName">AXIS</span><%= __('welcome_to_2') %>
       </span>
     </div>
     <div class="elements contents">
@@ -107,6 +107,57 @@
           <span class="progressExplainText"><%= __('qr_check') %></span>
           <span class="progressExplainText"><%= __('menu_selection') %></span>
           <span class="progressExplainText"><%= __('complete') %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="menuContainer" class="containers">
+    <div class="elements headers sebang">
+      <%= __('menu_selection') %>
+    </div>
+    <div class="elements contents">
+      <div id="menuImageContainer" class="menuContainer">
+        <img src="/images/menu/햄버거1.png" id="menuImage">
+      </div>
+      <div id="menuText" class="menuContainer">
+        <span id="menuNameSub" class="sebang">Hamburger</span>
+        <span id="menuName" class="sebang">햄버거</span>
+        <span id="menuPrice" class="sebang">4,900</span>
+      </div>
+      <div id="menuSelection" onscroll="menuScroll(this)">
+        <div id="menuFocus">
+          <div id="menuFocusImageContainer">
+            <img src="/images/menu/햄버거1.png" id="menuFocusImage">
+          </div>
+          <div id="menuFocusButton" onclick="addToCart()">
+            <img src="/images/checkmark.svg" id="menuFocusIcon">
+            <span><%= __('select') %></span>
+          </div>
+        </div>
+        <div class="menuEmpty"></div>
+        <div id="menuList"></div>
+        <div class="menuEmpty"></div>
+      </div>
+    </div>
+    <div class="elements interactions">
+      <div id="menuCategory"></div>
+      <div id="menuBottom">
+        <div id="menuCart">
+          <div id="menuCartTitle">
+            <span id="cartTitle"><%= __('order_list') %></span>
+            <span id="cartAmount"><%= __('order_amount1') %> <span id="cartCount">0</span><%= __('order_amount2') %></span>
+          </div>
+          <div id="menuCartList"></div>
+        </div>
+        <div id="payment">
+          <div id="paymentValueContainer">
+            <span id="totalLeft"><%= __('total_amount1') %></span>
+            <span id="totalRight" class="sebang"><span id="totalValue">0</span><%= __('total_amount2') %></span>
+          </div>
+          <div id="paymentButtonContainer">
+            <span id="cancelBtn" class="paymentButton" onclick="cancelOrder()"><%= __('cancel') %></span>
+            <span id="payBtn" class="paymentButton" onclick="placeOrder()"><%= __('pay') %></span>
+          </div>
         </div>
       </div>
     </div>

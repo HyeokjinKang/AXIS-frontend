@@ -175,6 +175,42 @@ const howtoCancel = () => {
   howtoContainer.classList.remove("display");
 };
 
+const qrChecked = () => {
+  document
+    .getElementsByClassName("additButtonContainer")[1]
+    .classList.add("displayNone");
+  howtoContainer.classList.remove("display");
+  nfcContainer.classList.remove("display");
+  webcamOverlay.classList.add("normal");
+  temperature.classList.add("normal");
+  alertText.innerText = "";
+  temperature.innerText = qrCheckCompleted;
+  speech(qrCheckCompleted);
+  webcamOverlay.classList.add("display");
+  setTimeout(() => {
+    showMenu();
+  }, 3000);
+};
+
+const showMenu = () => {
+  for (e of menu) {
+    if (!menuJson[e.category]) {
+      menuCategory.innerHTML = `${menuCategory.innerHTML}<div class="category${
+        !category.length ? " selected" : ""
+      }" onclick="categorySelected(${category.length})">${
+        lang == "ko" ? e.category : e.categoryEn
+      }</div>`;
+      category.push(e.category);
+      menuJson[e.category] = [];
+    }
+    menuJson[e.category].push(e);
+  }
+  categorySelected(0);
+  tempContainer.classList.add("fadeOut");
+  setTimeout(() => {
+    tempContainer.style.display = "none";
+  }, 1000);
+};
 const constraints = {
   audio: false,
   video: true,
