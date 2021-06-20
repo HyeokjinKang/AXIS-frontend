@@ -1,4 +1,6 @@
 const video = document.getElementById("webcam");
+const clientKey = "test_ck_OEP59LybZ8Bdv6A1JxkV6GYo7pRe";
+const tossPayments = TossPayments(clientKey);
 
 let menu = [];
 let menuJson = {};
@@ -375,6 +377,80 @@ const placeOrder = () => {
       document.getElementById("menuContainer").style.display = "none";
     }, 1000);
   }
+};
+
+const placeSelected = (e) => {
+  place = e;
+  document.getElementById("paySelectContainer").classList.add("fadeOut");
+  setTimeout(() => {
+    document.getElementById("paySelectContainer").style.display = "none";
+  }, 1000);
+};
+
+const methodSelected = (e) => {
+  method = e;
+  if (e == "cash") {
+    Swal.fire({
+      title: cashAlert,
+      text: cashText,
+      icon: "info",
+      showDenyButton: true,
+      confirmButtonText: `O`,
+      denyButtonText: `X`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document
+          .getElementById("paymentSelectContainer")
+          .classList.add("fadeOut");
+        setTimeout(() => {
+          document.getElementById("paymentSelectContainer").style.display =
+            "none";
+          orderComplete();
+        }, 1000);
+      }
+    });
+  } else {
+    let menus = "";
+    for (e of cart) {
+      menus += `${e.menu} ${e.count}개, `;
+    }
+    localStorage.method = method;
+    localStorage.place = place;
+    localStorage.menus = menus;
+    localStorage.amount = amount;
+    Swal.fire({
+      title: "안내",
+      html: `실제 주문에선 기기에 부착된 카드리더기를 통해 결제가 진행됩니다.<br>본 테스트용 프로그램에선 PG사로 대체합니다.`,
+      icon: "info",
+      confirmButtonText: `Ok`,
+    }).then(() => {
+      tossPayments.requestPayment("카드", {
+        amount: amount,
+        orderId: new Date().getTime(),
+        orderName: `${storeName} 결제`,
+        customerName: "고객",
+        successUrl: window.location.origin + "/success",
+        failUrl: window.location.origin + "/fail",
+      });
+    });
+  }
+};
+
+const orderComplete = () => {
+  let menus = "";
+  for (e of cart) {
+    menus += `${e.menu} ${e.count}개, `;
+  }
+  Swal.fire({
+    title: "주문 완료!",
+    html: `실제 주문에선 다음의 데이터가 주문 서버로 전송됩니다.<br>결제 방법 : ${method}<br>주문 장소 : ${place}<br>주문 메뉴 : ${menus}<br>결제 금액 : ${amount}`,
+    icon: "success",
+    confirmButtonText: `Ok`,
+  }).then(() => {
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  });
 };
 
 const constraints = {

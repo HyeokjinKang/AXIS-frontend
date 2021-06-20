@@ -49,6 +49,17 @@ app.get("/main", (req, res) => {
   res.render("main", { api: config.project.api, front: config.project.front });
 });
 
+app.get("/success", (req, res) => {
+  res.render("success", {
+    api: config.project.api,
+    front: config.project.front,
+  });
+});
+
+app.get("/fail", (req, res) => {
+  res.render("fail", { api: config.project.api, front: config.project.front });
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
 });

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXIS</title>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div id="successContainer" class="containers">
+    <img src="/images/check_icon.svg" id="check">
+    <span id="completeText"><%= __('all_complete') %></span>
+    <span id="completeDetailText"><%= __('all_complete_detail') %></span>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    Swal.fire({
+      title: "주문 완료!",
+      html: `실제 주문에선 다음의 데이터가 주문 서버로 전송됩니다.<br>결제 방법 : ${localStorage.method}<br>주문 장소 : ${localStorage.place}<br>주문 메뉴 : ${localStorage.menus}<br>결제 금액 : ${localStorage.amount}`,
+      icon: "success",
+      confirmButtonText: `Ok`,
+    }).then(() => {
+      setTimeout(() => {
+        location.href = "<%= front %>/main";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

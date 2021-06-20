@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/loading.css">
+  <script src="https://js.tosspayments.com/v1"></script>
 </head>
 <body>
   <div id="loadingContainer" class="containers">
@@ -162,6 +163,55 @@
       </div>
     </div>
   </div>
+  <div id="paySelectContainer" class="containers">
+    <div class="elements headers sebang">
+      <span>
+        <%= __('welcome_to_1') %><span class="storeName">AXIS</span><%= __('welcome_to_2') %>
+      </span>
+    </div>
+    <div class="elements contents sebang">
+      <span id="placeQuestion"><%= __('place_question') %></span>
+    </div>
+    <div class="elements interactions sebang" id="interactionsButtonContainer">
+      <div class="interactionsButton" onclick="placeSelected('shop')">
+        <img src="/images/shop.svg">
+        <span class="interactionsButtonLabel"><%= __('place_1_1') %><br><%= __('place_1_2') %></span>
+        <span class="interactionsButtonSub"><%= __('place_1_3') %></span>
+      </div>
+      <div class="interactionsButton" onclick="placeSelected('takeout')">
+        <img src="/images/bag.svg">
+        <span class="interactionsButtonLabel"><%= __('place_2_1') %><br><%= __('place_2_2') %></span>
+        <span class="interactionsButtonSub"><%= __('place_2_3') %></span>
+      </div>
+    </div>
+  </div>
+  <div id="paymentSelectContainer" class="containers">
+    <div class="elements headers sebang">
+      <span>
+        <%= __('welcome_to_1') %><span class="storeName">AXIS</span><%= __('welcome_to_2') %>
+      </span>
+    </div>
+    <div class="elements contents sebang">
+      <span id="placeQuestion"><%= __('payment_question') %></span>
+    </div>
+    <div class="elements interactions sebang" id="interactionsButtonContainer">
+      <div class="interactionsButton" onclick="methodSelected('card')">
+        <img src="/images/shop.svg">
+        <span class="interactionsButtonLabel"><%= __('card_1') %></span>
+        <span class="interactionsButtonSub"><%= __('card_2') %></span>
+      </div>
+      <div class="interactionsButton" onclick="methodSelected('cash')">
+        <img src="/images/bag.svg">
+        <span class="interactionsButtonLabel"><%= __('cash_1') %></span>
+        <span class="interactionsButtonSub"><%= __('cash_2') %></span>
+      </div>
+    </div>
+  </div>
+  <div id="successContainer" class="containers">
+    <img src="/images/check_icon.svg" id="check">
+    <span id="completeText"><%= __('all_complete') %></span>
+    <span id="completeDetailText"><%= __('all_complete_detail') %></span>
+  </div>
   <script>
     const lang = "<%= __('lang') %>";
     const api = "<%= api %>";
@@ -183,7 +233,12 @@
     const howto1 =  "<%= __('how_to_1') %>";
     const howto2 =  "<%= __('how_to_2') %>";
     const howto3 =  "<%= __('how_to_3') %>";
+    const qrCheckCompleted =  "<%= __('qr_check_complete') %>";
+    const rusure =  "<%= __('are_you_sure') %>";
+    const cashAlert =  "<%= __('cash_alert') %>";
+    const cashText =  "<%= __('cash_text') %>";
   </script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
