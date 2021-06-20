@@ -16,6 +16,9 @@ let msg = new SpeechSynthesisUtterance();
 let voices;
 let interval;
 let blindMode = false;
+let screen = 0;
+let leftEnd = false;
+let rightEnd = false;
 
 document.addEventListener("DOMContentLoaded", (event) => {
   speechSynthesis.cancel();
@@ -78,6 +81,7 @@ const doneLoading = () => {
       document.getElementById("loadingContainer").style.display = "none";
     }, 1000);
   }, 1000);
+  speech(orderHere);
   interval = setInterval(() => {
     speech(orderHere);
   }, 30000);
@@ -95,6 +99,7 @@ const speech = (text) => {
 };
 
 const start = () => {
+  screen = 1;
   waitContainer.classList.add("fadeOut");
   setTimeout(() => {
     waitContainer.style.display = "none";
@@ -142,6 +147,7 @@ const noMask = () => {
 };
 
 const qrcode = () => {
+  screen = 2;
   speech(codeCheck);
   if (blindMode) {
     setTimeout(() => {
@@ -170,6 +176,7 @@ const qrcode = () => {
 };
 
 const mobileCheck = () => {
+  screen = 3;
   speech(`${mobile3} 1. ${mobile1} 2. ${mobile2}`);
   nfcContainer.classList.add("display");
 };
@@ -179,6 +186,7 @@ const mobileCheckCancel = () => {
 };
 
 const howtoCheck = () => {
+  screen = 4;
   speech(`${howto3} 1. ${howto1} 2. ${howto2}`);
   howtoContainer.classList.add("display");
 };
@@ -205,6 +213,7 @@ const qrChecked = () => {
 };
 
 const showMenu = () => {
+  screen = 5;
   for (e of menu) {
     if (!menuJson[e.category]) {
       menuCategory.innerHTML = `${menuCategory.innerHTML}<div class="category${
@@ -218,6 +227,11 @@ const showMenu = () => {
     menuJson[e.category].push(e);
   }
   categorySelected(0);
+  if (blindMode) {
+    speech(menuBlindVoice);
+  } else {
+    speech(menuVoice);
+  }
   tempContainer.classList.add("fadeOut");
   setTimeout(() => {
     tempContainer.style.display = "none";
@@ -232,9 +246,12 @@ const menuScroll = (e) => {
   if (lang == "ko") {
     menuNameSub.innerText = menu.menuEn;
     menuName.innerText = menu.menu;
+    if (blindMode) speech(`${menu.menu}, ${menu.amount}원`);
   } else {
     menuNameSub.innerText = menu.menu;
     menuName.innerText = menu.menuEn;
+    if (blindMode) speech(menu.menuEn);
+    if (blindMode) speech(`${menu.menu}, ${menu.amount}won`);
   }
   menuPrice.innerText = menu.amount.toLocaleString("ko-KR");
   let t = e.scrollLeft;
@@ -371,6 +388,9 @@ const cancelOrder = () => {
 };
 
 const placeOrder = () => {
+  screen = 6;
+  if (blindMode) speech(placeQuestionBlind);
+  else speech(placeQuestion);
   if (amount) {
     document.getElementById("menuContainer").classList.add("fadeOut");
     setTimeout(() => {
@@ -380,6 +400,9 @@ const placeOrder = () => {
 };
 
 const placeSelected = (e) => {
+  screen = 7;
+  if (blindMode) speech(paymentQuestionBlind);
+  else speech(paymentQuestion);
   place = e;
   document.getElementById("paySelectContainer").classList.add("fadeOut");
   setTimeout(() => {
@@ -390,6 +413,21 @@ const placeSelected = (e) => {
 const methodSelected = (e) => {
   method = e;
   if (e == "cash") {
+    if (blindMode) {
+      speech(cashText);
+      screen = 8;
+      setTimeout(() => {
+        document
+          .getElementById("paymentSelectContainer")
+          .classList.add("fadeOut");
+        setTimeout(() => {
+          document.getElementById("paymentSelectContainer").style.display =
+            "none";
+          orderComplete();
+        }, 1000);
+      }, 3000);
+      return;
+    }
     Swal.fire({
       title: cashAlert,
       text: cashText,
@@ -437,6 +475,7 @@ const methodSelected = (e) => {
 };
 
 const orderComplete = () => {
+  speech(orderCompleteMessage);
   let menus = "";
   for (e of cart) {
     menus += `${e.menu} ${e.count}개, `;
@@ -476,3 +515,92 @@ navigator.mediaDevices
   .getUserMedia(constraints)
   .then(handleSuccess)
   .catch(handleError);
+
+window.onkeydown = (e) => {
+  e = e.key.toLowerCase();
+  if (screen == 0) {
+    if (e == "arrowup") {
+      blindMode = true;
+      start();
+    }
+  } else if (screen == 5) {
+    if (e == "arrowleft") {
+      if (selection == 0) {
+        if (categorySelection == 0) {
+          if (leftEnd) {
+            speech(startOfMenu);
+          } else {
+            leftEnd = true;
+            speech(pressToOrder);
+          }
+        } else {
+          categorySelected(categorySelection - 1);
+          menuSelected(menuJson[category[categorySelection]].length - 1);
+        }
+      } else {
+        if (rightEnd) {
+          rightEnd = false;
+          menuSelected(menuJson[category[categorySelection]].length - 1);
+          let menu = menuJson[category[categorySelection]][selection];
+          if (lang == "ko") {
+            if (blindMode) speech(`${menu.menu}, ${menu.amount}원`);
+          } else {
+            if (blindMode) speech(`${menu.menu}, ${menu.amount}won`);
+          }
+        } else {
+          menuSelected(selection - 1);
+        }
+      }
+    } else if (e == "arrowright") {
+      if (selection == menuJson[category[categorySelection]].length - 1) {
+        if (categorySelection == category.length - 1) {
+          if (rightEnd) {
+            speech(endOfMenu);
+          } else {
+            rightEnd = true;
+            speech(pressToCancel);
+          }
+        } else {
+          categorySelected(categorySelection + 1);
+        }
+      } else {
+        if (leftEnd) {
+          leftEnd = false;
+          menuSelected(0);
+          let menu = menuJson[category[categorySelection]][selection];
+          if (lang == "ko") {
+            if (blindMode) speech(`${menu.menu}, ${menu.amount}원`);
+          } else {
+            if (blindMode) speech(`${menu.menu}, ${menu.amount}won`);
+          }
+        } else {
+          menuSelected(selection + 1);
+        }
+      }
+    } else if (e == "arrowup") {
+      if (leftEnd) {
+        placeOrder();
+      } else if (rightEnd) {
+        speech(canceled);
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      } else {
+        addToCart();
+        speech(addedToCart);
+      }
+    }
+  } else if (screen == 6) {
+    if (e == "arrowleft") {
+      placeSelected("shop");
+    } else if (e == "arrowright") {
+      placeSelected("takeout");
+    }
+  } else if (screen == 7) {
+    if (e == "arrowleft") {
+      methodSelected("card");
+    } else if (e == "arrowright") {
+      methodSelected("cash");
+    }
+  }
+};
